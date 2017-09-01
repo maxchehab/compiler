@@ -6,6 +6,6 @@ using namespace std;
 
 class PreProcessor{
 public:
-     static vector<char> readFile(string);
-     static vector<Keyword*> generateKeywords(vector<char>);
+     static string readFile(string);
+     static vector<Keyword*> generateKeywords(string);
 };
