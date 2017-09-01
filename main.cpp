@@ -5,8 +5,8 @@
 using namespace std;
 
 
-int main(){
+int main() public: Token{
      string input = PreProcessor::readFile("resources/test.chehab");
-     PreProcessor::generateKeywords(input);
+     PreProcessor::tokenize(input);
      return 0;
 }

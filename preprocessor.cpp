@@ -26,23 +26,26 @@ string PreProcessor::readFile(string path){
      return input;
 }
 
-vector<Keyword*> PreProcessor::generateKeywords(string input){
-     vector<Keyword*> output;
-     string temp;
-     int startPoint = 0;
-     for(int i = 0; i < input.length(); i++){
-          temp = input.substr(startPoint,i);
-          Type tempType = Keyword::identify(temp);
-          switch(tempType){
-               case Type::conditional : int endpoint = Conditional::findEndPoint(i + 1, string(input.begin(),input.end()));
-                                        Conditional *conditional = new Conditional("hello!");
-                                        output.push_back(conditional->clone());
-                                        break;
+vector<Token> PreProcessor::tokenize(string input){
+     vector<Token> output;
+     int startPos = 0;
+
+     for(int i = 0; i <= input.length() - startPos; i++) {
+          string temp = input.substr(startPos, i);
+          //cout << temp << endl;
+          Type tempType = Token::identify(temp);
+          if(tempType == Type::statement){
+               for(int j = 0, finish = 0; j < input.length() && finish == 0; j++) {
+                    if(input[startPos + j] == ';'){
+                         output.push_back(new Statement(input.substr(startPos, j)))
+                         cout << "new statement : " << input.substr(startPos, j + 1) << endl;
+                         startPos += j + 1;
+                         i = 1;
+                         finish = 1;
+                    }
+               }
           }
 
-          if(tempType != Type::null){
-               startPoint = i;
-          }
      }
 
      return output;
