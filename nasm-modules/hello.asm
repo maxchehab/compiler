@@ -1,18 +1,68 @@
-section     .text
-global      _start                              ;must be declared for linker (ld)
+section .bss
+    digitSpace resb 100
+    digitSpacePos resb 8
+    c resb 32
 
-_start:                                         ;tell linker entry point
+section .data
+     a dw 0
+     b dw 5
 
-    mov     edx,len                             ;message length
-    mov     ecx,msg                             ;message to write
-    mov     ebx,1                               ;file descriptor (stdout)
-    mov     eax,4                               ;system call number (sys_write)
-    int     0x80                                ;call kernel
 
-    mov     eax,1                               ;system call number (sys_exit)
-    int     0x80                                ;call kernel
+section .text
 
-section     .data
+    global _start
 
-msg     db  'Hello, world!',0xa                 ;our dear string
-len     equ $ - msg                             ;length of our dear string
+_start:
+     mov rax, 5
+     mov rbx, 10
+     add rax, rbx
+     mov [c], rax
+
+     mov rax, [c]
+     call _printRAX
+
+     mov rax, 60
+     mov rdi, 0
+     syscall
+
+
+_printRAX:
+     mov rcx, digitSpace
+     mov rbx, 10
+     mov [rcx], rbx
+     inc rcx
+     mov [digitSpacePos], rcx
+
+_printRAXLoop:
+     mov rdx, 0
+     mov rbx, 10
+     div rbx
+     push rax
+     add rdx, 48
+
+     mov rcx, [digitSpacePos]
+     mov [rcx], dl
+     inc rcx
+     mov [digitSpacePos], rcx
+
+     pop rax
+     cmp rax, 0
+     jne _printRAXLoop
+
+_printRAXLoop2:
+     mov rcx, [digitSpacePos]
+
+     mov rax, 1
+     mov rdi, 1
+     mov rsi, rcx
+     mov rdx, 1
+     syscall
+
+     mov rcx, [digitSpacePos]
+     dec rcx
+     mov [digitSpacePos], rcx
+
+     cmp rcx, digitSpace
+     jge _printRAXLoop2
+
+     ret
