@@ -7,5 +7,5 @@ using namespace std;
 class PreProcessor{
 public:
      static string readFile(string);
-     static vector<Token> tokenize(string);
+     static vector<Token*> tokenize(string);
 };

@@ -26,8 +26,8 @@ string PreProcessor::readFile(string path){
      return input;
 }
 
-vector<Token> PreProcessor::tokenize(string input){
-     vector<Token> output;
+vector<Token*> PreProcessor::tokenize(string input){
+     vector<Token*> output;
      int startPos = 0;
 
      for(int i = 0; i <= input.length() - startPos; i++) {
@@ -37,15 +37,14 @@ vector<Token> PreProcessor::tokenize(string input){
           if(tempType == Type::statement){
                for(int j = 0, finish = 0; j < input.length() && finish == 0; j++) {
                     if(input[startPos + j] == ';'){
-                         output.push_back(new Statement(input.substr(startPos, j)))
-                         cout << "new statement : " << input.substr(startPos, j + 1) << endl;
+                         output.push_back(new Token(input.substr(startPos, j), tempType));
+                         //cout << "new statement : " << input.substr(startPos, j + 1) << endl;
                          startPos += j + 1;
                          i = 1;
                          finish = 1;
                     }
                }
           }
-
      }
 
      return output;
