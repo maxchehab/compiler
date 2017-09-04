@@ -1,27 +1,29 @@
 section .bss
-    digitSpace resb 100
-    digitSpacePos resb 8
-    c resb 32
+digitSpace resb 100
+digitSpacePos resb 8
 
-section .data
-     a dw 0
-     b dw 5
-
-
+GSFUf resb 32
+zOXl0 resb 32
+Vq2KD resb 32
 section .text
-
-    global _start
-
+global _start
 _start:
-     mov rax, 5
-     mov rbx, 10
-     add rax, rbx
-     mov [c], rax
 
-     mov rax, [c]
-     call _printRAX
+mov rax, 30
+mov [GSFUf], rax
+mov rax, 10
+mov [zOXl0], rax
 
-     mov rax, 60
+mov rax, [Vq2KD]
+add rax, [GSFUf]
+add rax, [zOXl0]
+mov [Vq2KD], rax
+
+mov rax, [GSFUf]
+call _printRAX
+
+
+mov rax, 60
      mov rdi, 0
      syscall
 

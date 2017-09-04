@@ -2,7 +2,11 @@
 
 using namespace std;
 
+
 struct Variable{
-  string name;
-  int value;
+public:
+     string name;
+     string value;
+     string literal;
+
 };
