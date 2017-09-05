@@ -1,6 +1,6 @@
 # compiler
 This is a WIP weekend project. There is no error handling and very minimal functionality.
-This is simply an exercise of exploring how a compiler works. View an online demonstration of this project [here](104.236.141.69/compiler).
+This is simply an exercise of exploring how a compiler works. View an online demonstration of this project [here](http://104.236.141.69/compiler).
 
 ## commands
 
