@@ -1,0 +1,29 @@
+<html>
+
+<head>
+     <title>Compiler</title>
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script src="js/app.js"></script>
+</head>
+
+<body>
+     <div class="upper" >
+          <textarea id="input">var a = 10;
+var b = 15 + 1 + 200;
+var c = a + b + 1001;
+print(c);</textarea>
+     </div>
+     <div class="center">
+          <button onclick="compile()">Compile and Run</button>
+     </div>
+     <div style="float: right;"class="upper">
+          <textarea id="output-asm"></textarea>
+     </div>
+     <div class="lower">
+          <textarea id="output-terminal"></textarea>
+     </div>
+
+</body>
+
+</html>

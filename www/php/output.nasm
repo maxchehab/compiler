@@ -6,41 +6,25 @@ digitSpace resb 100
 digitSpacePos resb 8
 
 XpWQHoCc resb 32
-UpBhdxtj resb 32
+LzeoMlfs resb 32
 qEROxgGu resb 32
-dQfLmmAP resb 32
-EAOrzZmT resb 32
-cGuqNWcy resb 32
-SXpavsEO resb 32
 section .text
 global _start
 _start:
 
 mov rax, 10
 mov [XpWQHoCc], rax
-mov rax, 15
-mov [UpBhdxtj], rax
-mov rax, 1
-mov [qEROxgGu], rax
-mov rax, 200
-mov [dQfLmmAP], rax
-mov rax, 1001
-mov [cGuqNWcy], rax
-mov rax, [EAOrzZmT]
-add rax, [UpBhdxtj]
-add rax, [qEROxgGu]
-add rax, [dQfLmmAP]
-mov [EAOrzZmT], rax
-mov rax, [SXpavsEO]
+mov rax, 12
+mov [LzeoMlfs], rax
+mov rax, [qEROxgGu]
 add rax, [XpWQHoCc]
-add rax, [EAOrzZmT]
-add rax, [cGuqNWcy]
-mov [SXpavsEO], rax
-mov rax, [SXpavsEO]
+add rax, [LzeoMlfs]
+mov [qEROxgGu], rax
+mov rax, [qEROxgGu]
 call _printRAX
 
 
-
+	
 mov rax, 60
      mov rdi, 0
      syscall

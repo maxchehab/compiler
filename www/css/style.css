@@ -1,0 +1,17 @@
+
+.upper{
+     width: 45%;
+     height: 80%;
+     display: inline-block;
+}
+.center{
+     display: inline-block;
+}
+.lower{
+     height: 20%;
+     width: 100%;
+}
+textarea{
+     width: 100%;
+     height: 100%;
+}

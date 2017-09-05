@@ -17,7 +17,7 @@ vector<string> bssSection;
 vector<string> textSection;
 
 int main(){
-     string input = fileToString("resources/test.chehab");
+     string input = fileToString("input.js");
      vector<string> commands = explode(input, ';');
      for(string command : commands){
           parse(command);
@@ -25,31 +25,6 @@ int main(){
 
      compile();
      print();
-
-     /*cout << "Variables:" << endl;
-     for(Variable variable : variables){
-          cout << variable.literal << " " << variable.name << " " << variable.value << endl;
-     }
-
-     cout << endl << "Operators:" << endl;
-     for(Operator oper : operators){
-          cout << oper.parent << endl;
-     }
-
-     cout << endl << "Prints:" << endl;
-     for(string print : prints){
-          cout << print << endl;
-     }
-
-     cout << endl << "bssSection:" << endl;
-     for(string bss : bssSection){
-          cout << bss << endl;
-     }
-
-     cout << endl << "textSection:" << endl;
-     for(string text : textSection){
-          cout << text << endl;
-     }*/
 
      return 0;
 }
@@ -66,6 +41,8 @@ void print(){
          file <<"\n";
          file.close();
       }else{
+           file << ";To run this assembly code, save this text as output.nasm and run the following command:\n;nasm -f elf64 -o output.o output.nasm && ld -o output output.o && ./output" << endl << endl;
+
            file << "section .bss" << endl;
            file << "digitSpace resb 100" << endl;
            file << "digitSpacePos resb 8" << endl << endl;
@@ -85,7 +62,6 @@ void print(){
            file << endl << endl << "\t\r\nmov rax, 60\r\n     mov rdi, 0\r\n     syscall\r\n\r\n\r\n_printRAX:\r\n     mov rcx, digitSpace\r\n     mov rbx, 10\r\n     mov [rcx], rbx\r\n     inc rcx\r\n     mov [digitSpacePos], rcx\r\n\r\n_printRAXLoop:\r\n     mov rdx, 0\r\n     mov rbx, 10\r\n     div rbx\r\n     push rax\r\n     add rdx, 48\r\n\r\n     mov rcx, [digitSpacePos]\r\n     mov [rcx], dl\r\n     inc rcx\r\n     mov [digitSpacePos], rcx\r\n\r\n     pop rax\r\n     cmp rax, 0\r\n     jne _printRAXLoop\r\n\r\n_printRAXLoop2:\r\n     mov rcx, [digitSpacePos]\r\n\r\n     mov rax, 1\r\n     mov rdi, 1\r\n     mov rsi, rcx\r\n     mov rdx, 1\r\n     syscall\r\n\r\n     mov rcx, [digitSpacePos]\r\n     dec rcx\r\n     mov [digitSpacePos], rcx\r\n\r\n     cmp rcx, digitSpace\r\n     jge _printRAXLoop2\r\n\r\n     ret";
 
            file.close();
-           cout<<"\n";
 
     }
 
@@ -133,7 +109,6 @@ void parse(string command){
                keys = explode(value,'+');
                vector<string> children;
                for(int i = 0; i < keys.size(); i++){
-                    cout << keys[i] << endl;
                     name = randomString();
                     value = keys[i];
                     if(findVariableIndex(value) != -1){
